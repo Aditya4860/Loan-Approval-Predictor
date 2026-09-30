@@ -1,0 +1,11 @@
+ApplicantIncome,CoapplicantIncome,LoanAmount,Loan_Amount_Term,Credit_History,Employment_Status,Marital_Status,Dependents,Education,Property_Area
+8500,2000,180,360,1.0,Salaried,Yes,1,Graduate,Semiurban
+3200,0,320,120,0.0,Self_Employed,No,3+,Not Graduate,Rural
+12000,4500,250,360,1.0,Salaried,Yes,0,Graduate,Urban
+6000,1500,140,240,1.0,Salaried,No,2,Graduate,Semiurban
+2500,0,450,180,0.0,Self_Employed,No,3+,Not Graduate,Rural
+15000,6000,400,360,1.0,Salaried,Yes,1,Graduate,Urban
+4800,800,100,360,1.0,Salaried,Yes,0,Not Graduate,Semiurban
+9500,3200,220,300,1.0,Self_Employed,Yes,2,Graduate,Urban
+3000,0,280,120,0.0,Self_Employed,No,1,Not Graduate,Rural
+11000,5000,350,360,1.0,Salaried,Yes,0,Graduate,Semiurban
