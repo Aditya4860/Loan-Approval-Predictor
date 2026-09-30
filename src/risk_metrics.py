@@ -49,8 +49,32 @@ def build_risk_features(df: pd.DataFrame) -> pd.DataFrame:
     pd.DataFrame
         The same DataFrame with three additional columns appended in-place:
         ``emi``, ``dti``, ``lti``.
+
+    Raises
+    ------
+    ValueError
+        If any row has ApplicantIncome <= 0 or Loan_Amount_Term <= 0.
+        Applicant income must be strictly positive to produce a meaningful
+        DTI ratio, and loan tenure must be strictly positive to avoid
+        division by zero in the EMI calculation.
     """
     df = df.copy()
+
+    non_positive_income_mask = df["ApplicantIncome"] <= 0
+    if non_positive_income_mask.any():
+        bad_values = df.loc[non_positive_income_mask, "ApplicantIncome"].tolist()
+        raise ValueError(
+            f"ApplicantIncome must be strictly positive. "
+            f"Got non-positive values: {bad_values}"
+        )
+
+    non_positive_term_mask = df["Loan_Amount_Term"] <= 0
+    if non_positive_term_mask.any():
+        bad_values = df.loc[non_positive_term_mask, "Loan_Amount_Term"].tolist()
+        raise ValueError(
+            f"Loan_Amount_Term must be strictly positive. "
+            f"Got non-positive values: {bad_values}"
+        )
 
     monthly_income = (df["ApplicantIncome"] + df["CoapplicantIncome"]) / MONTHLY_INCOME_DIVISOR
     annual_income = df["ApplicantIncome"] + df["CoapplicantIncome"]
